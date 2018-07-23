@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel= "stylesheet" type="text/css" href="../mycss/visitor.css">
+<script  type="text/javascript"  src="../js/validateLogin.js"></script>
+
+
+
+
+</head>
+<body>
+
+<div>
+<h2>visitor form</h2>
+<form  name="myForm"  action="./VISITOR_FOR_SERVLET" onsubmit="return !!(validateEmail());" >
+<table>
+<tr><td><label>Email::</label><input type="text" name="email"/></td></tr>
+
+
+<tr><td><input  type="submit" value="login"/></td></tr>
+<tr><td><a href="/Pages/ViewRegistration.jsp">registrastion</a></td></tr>
+</table>
+</form>
+</div>
+</body>
+</html>

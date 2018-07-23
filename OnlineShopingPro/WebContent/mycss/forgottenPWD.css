@@ -1,0 +1,26 @@
+#form
+{
+	background-color:skyblue;
+	margin-left: 300px;
+	margin-right: 400px;
+	margin-top: 200px;
+}
+#table
+{
+	margin-left: 200px;
+	margin-right: 300px;
+	margin-top: 20px;
+	
+}
+/* label,input
+{
+margin-left: 20px;
+	margin-right:1px;
+	margin-top: 20px;
+} */
+p{
+	margin-left: 50px;
+	margin-right: 100px;
+	margin-top: 20px;
+
+}

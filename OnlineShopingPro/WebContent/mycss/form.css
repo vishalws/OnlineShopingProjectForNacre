@@ -1,0 +1,33 @@
+#form
+{
+	 background-color :lightgreen;
+	height:auto;
+	 align:center;
+     
+	 margin-left:300px;
+	 margin-right:300px;
+	 margin-top:100px;
+    
+	
+} 
+#table{
+
+	margin-left:150px;
+	 margin-right:200px;
+	 margin-top:10x;
+	
+}
+messages{
+	text-align:red;
+}
+body{
+	background-color: cyan;
+}
+h2{
+	margin-top:100px;
+    
+}
+
+
+
+

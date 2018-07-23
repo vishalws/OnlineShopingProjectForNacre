@@ -1,0 +1,25 @@
+div
+{
+background-color:skyblue;
+width:250px;
+ margin: 0 auto; 
+	 text-align:center;
+}
+label
+{
+		text-align: right;
+}
+form
+{
+	
+}
+input
+{
+	
+	text-align:left;
+}
+h2
+{
+	
+	align:center;
+}

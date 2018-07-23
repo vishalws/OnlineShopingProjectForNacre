@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="<%=application.getContextPath()%>/assets/js/jquery-1.10.2.js"></script>
+<!-- BOOTSTRAP SCRIPTS -->
+<script
+	src="<%=application.getContextPath()%>/assets/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	function valid(hi) {
+		alert(hi);
+		$.get("./ratingurl?rating='" + hi + "'", function(json) {
+
+		});
+	}
+
+	$(document)
+			.ready(
+					function() {
+						$("#rate").change(function() {
+							var rate = $(this).val();
+							alert(rate);
+
+						});
+
+						$
+								.get(
+										"./viewProductUrl",
+										function(json) {
+
+											var a = "<tr><td>product id</td><td>product name</td><td>product price</td><td>product images</td><td>product color</td><td>product quantity</td><td>add Cart</td><td>feedback</td></tr>";
+
+											$
+													.each(
+															json,
+															function(key, value) {
+
+																
+																a += "<tr><td>"
+																		+ value.product_id
+																		+ "</td><td>"
+																		+ value.product_name
+																		+ "</td><td>"
+																		+ value.product_price
+																		+ "</td><td><img src='data:image/jpg;base64,"+value.product_images+"' alt='Red dot' width='95' height='95'> /></td><td>"
+																		+ value.product_color
+																		+ "</td><td>"
+																		+ value.product_quantity
+																		+ "</td><td><a href=./OrderSummaryurl?product_id='"
+																		+ value.product_id
+																		+ "'&product_price='"
+																		+ value.product_price
+																		+ "'&product_quantity='"
+																		+ value.product_quantity
+																		+ "'&product_name='"
+																		+ value.product_name
+																		+ "'>addcare</a></td><td><a href=./html/feedback.html>feedback</a></td><td><p>rating</p><select onchange='valid(this.value);'  id='rate' name='rate'><option selected value='0'>Rate Us</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option> </select> </td></tr>";
+															});
+											$("#pid").append(a);
+										});
+					});
+</script>
+</head>
+<body style="">
+	<h2 style="color: red">
+		<marquee>Customer product page</marquee>
+	</h2>
+	<a href="./html/forgottenPwd.html">changePassword</a>
+	<table id="pid" border="1">
+
+	</table>
+
+	
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel = "stylesheet" type="text/css" href="../mycss/form.css"> 
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src= "https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+	  $.get("../dburl",function(json)
+		{ 
+		 
+		  
+		  
+	  var a="<option value=''>select country</option>";
+	 
+	  $.each(json,function(key,value){
+		 
+	  	a+="<option  value='"+value.cid+"'>"+value.countryName+"</option>";
+	  });
+		  $("#cid").append(a);
+	});
+	  
+	  $("#cid").change(function(){
+		  var cid=$("#cid").val(); 
+		  
+		   $.get("../stateDetails?cid="+cid,function(json)
+					{ 
+					 
+					  
+					  
+				  var state="<option value=''>select state</option>";
+				  
+				  $.each(json,function(key,value){
+					 
+				  	state+="<option  value='"+value.sid+"'>"+value.stateName+"</option>";
+				  });
+					  $("#sid").append(state);
+				});
+		    
+	  });
+	  
+	  
+	  $("#sid").change(function(){
+		  var sid=$("#sid").val(); 
+		  
+		   $.get("../cityurl?sid="+sid,function(json)
+					{ 
+					  
+			   $("#ctid").append("");
+					  
+				  var city="<option   value=''>select city</option>";
+				  
+				  $.each(json,function(key,value){
+					 
+				  	city+="<option value='"+value.ctid+"'>"+value.cityName+"</option>";
+				  });
+					  $("#ctid").append(city);
+				});
+	  });
+	  
+	  $("#ctid").change(function(){
+		  
+		  var ctid=$("#ctid").val();
+		  
+		  $.get("../addrurl?ctid="+ctid,function(json){
+			  
+		  });
+	  });
+	  
+	});
+
+/* 
+$(document).ready(function () {
+	  //called when key is pressed in textbox
+	  $("#pin1").keypress(function (e) {
+	     //if the letter is not digit then display error and don't type anything
+	     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+	        //display error message
+	        $("#errmsg1").html("Digits Only").show().fadeOut("slow");
+	               return true;
+	    }
+	   });
+	});
+*/
+$(document).ready(function () {
+	  
+	 var ph=$("phone1").val();
+	/*   if (/^[789]{1}$/.match(ph)) {
+		 alert("hi");
+	 }  */
+	  //called when key is pressed in textbox
+	  $("#phone1").keypress(function (e) {
+		  
+	     //if the letter is not digit then display error and don't type anything
+	     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+	        //display error message
+	        $("#errmsg").html("Digits Only").show().fadeOut("slow");
+	               return true;
+	    }
+	   });
+	}); 
+ 
+
+
+ $(document).ready(function () {
+	    $("#account_info").validate({  
+	        rules: {
+	            fname: {
+	                required: true
+	                 },
+	            lname: {
+	                required: true
+	            },
+	            datepicker:{
+	                required: true
+	            },
+	            gen:{
+	            	required:true
+	            },
+	            pwd:{
+	            	required:true,
+	            	minlength:6,
+	                maxlength:12
+	            },
+	            
+	            mob:{
+	            	required:true,
+	            	minlength:10,
+	            	maxlength:10
+	            },
+	            
+	            email:{
+	            	required:true,
+	            	email:true
+	            },
+	            
+	           /* city:{
+	            	required:true
+	            },
+	            state:{
+	            	required:true
+	            },*/
+	            pin:{
+	            	required:true
+	            }
+	        },
+	        messages: {
+	            fname: {
+	                required: "enter friest number"
+	                	
+	            },
+	           lname: {
+	                required: "Enter last name"
+	               
+	            },
+	           
+	            gen:{
+	            	required:"enter gender"
+	            },
+	            pwd:{
+	            	required:"enter password",
+	            	minlength:"atleast 6 digit",
+	                maxlength:"max 12 digit"
+	            },
+	            
+	            mob:{
+	            	required:"enter mobile number",
+	            	minlength:"number should be 10 digit",
+	            	maxlength:" the number should be 10 digit"
+	            },
+	            
+	            email:{
+	            	required:"enter email id"
+	            },
+	            
+	           /* city:{
+	            	required:"enter the city"
+	            },
+	            state:{
+	            	required:"enter the state"
+	            },*/
+	            pin:{
+	            	required:"enter pin code"
+	            }
+
+	        },
+	     
+	    });
+	    
+
+	});
+
+
+</script>
+</head> 
+<body>
+<center><h2>Registration Form</h2></center>
+<div id="form">
+
+<form  id="account_info" action="../registerurl" method="get" >
+<div id="table">
+   <table>
+   <tr><td>First Name::</td><td><input id="name1" type="text" size="15" name="fname"></td></tr>
+   <tr><td>Last Name::</td><td><input type="text" size="15" name="lname"></td></tr>
+ 
+   <tr><td>Gender::</td><td><input type="radio" name="gender" value="male" checked> Male
+  <input type="radio" name="gender" value="female"> Female</td></tr>
+   <tr><td>Password::</td><td><input type="password" size="15" name="pwd"></td></tr>
+   
+   <tr><td>Mobile::</td><td><input  id="phone1" type="text" size="15" name="mob"/>&nbsp;<span id="errmsg" style="color:red;"></span></td></tr>
+  <tr><td>Email::</td><td><input type="text" size="15" name="email"></td></tr>
+<tr><td>Address Area</td><td><input type="text" size="15" name="addr1"/></td></tr>
+ <tr><td>Address Home No</td><td><input type="text" size="15" name="addr2"/></td></tr>
+     <tr><td>country</td><td><select id="cid">
+
+	</select></td></tr>
+
+
+	<tr><td>state</td><td><select  id="sid">
+		
+	</select></td></tr>
+
+
+	<tr><td>city</td><td><select  id="ctid">
+		
+	</select></td></tr>
+   <tr><td>Pin code::</td><td><input id="pin1"size="15" type="text" name="pin">&nbsp;<span id="errmsg1" style="color:red;"></span></td></tr>
+  <tr><td><input type="submit" value="Submit"/></td>&nbsp &nbsp&nbsp&nbsp  <td><input type="reset" value="Reset" id="submit"  /></td></tr>
+
+   </table>
+  </div>
+</form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel= "stylesheet" type="text/css" href="./mycss/login.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script  type="text/javascript"  src="./js/validateLogin.js"></script> 
+ <script type="text/javascript">
+$(document).ready(function(){
+	
+	$.get("./role",function(json){
+		
+		var role="<option value=''>select role</option>";
+		$.each(json,function(key,value){
+			
+			role+="<option value='"+value.roleid+"'>"+value.roleName+"</option>";
+			
+		});
+	         $("#role1").html(role);
+	});
+	
+});
+
+
+
+</script> 
+
+</head>
+<body>
+
+<div>
+<h2>login form</h2>
+<form action="./login"    onsubmit="return !!(validateEmail() & validatePWD())" name="myForm" >
+<table>
+<tr><td><label>Role::</label></td><td><select name="role"  id="role1">
+             
+              
+              </select> </td></tr>
+<tr><td><label>Email::</label></td><td><input type="text" name="email"/></td></tr>
+<tr><td><label>password::</label></td><td><input type="text" name="pwd"/></td></tr>
+
+<tr><td><input  type="submit" value="submit"/></td></tr>
+<tr><td><a href="./forgotPassword.html">forgot password</a></td> &nbsp; &nbsp;&nbsp;<td><a href="./Pages/visitor.jsp">visitor</a></td></tr>
+<tr><td><a href="./html/registrationJquery.html">register</a></td></tr>
+</table>
+</form> 
+</div>
+</body>
+</html>

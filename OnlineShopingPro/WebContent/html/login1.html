@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../mycss/login1.css">
+<script type="text/javascript" src="../js/validateLogin.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+
+				$.get("../role", function(json) {
+
+					var role = "<option value=''>select role</option>";
+					$.each(json, function(key, value) {
+
+						role += "<option value='"+value.roleid+"'>"
+								+ value.roleName + "</option>";
+
+					});
+					$("#role1").html(role);
+				});
+
+			});
+</script>
+</head>
+<body>
+	<div class="login-page">
+		<div class="form">
+			<form class="register-form">
+				<input type="text" placeholder="name" /> <input type="password"
+					placeholder="password" /> <input type="text"
+					placeholder="email address" />
+				<button>create</button>
+				<p class="message">
+					Already registered? <a href="#">Sign In</a>
+				</p>
+			</form>
+			<form class="login-form">
+				<input type="text" placeholder="username" name="email" /> <input type="password"
+					placeholder="password" name="password"/>
+				<button>login</button>
+				<p class="message">
+					Not registered? <a href="#">Create an account</a>
+				</p>
+			</form>
+			<a href="../html/forgotPassword.html">forgot password</a> &nbsp;
+			&nbsp;&nbsp;<a href=""> as visitor</a>&nbsp;&nbsp;<a
+				href="../html/product.html">new register</a>
+		</div>
+	</div>
+
+
+
+	</div>
+	</div>
+</body>
+</html>
